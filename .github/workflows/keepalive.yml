@@ -1,0 +1,12 @@
+# Evita que o Supabase gratuito pause o projeto por inatividade.
+# Configurar em GitHub > Settings > Secrets: SUPABASE_URL e SUPABASE_KEY (publishable key).
+name: keepalive
+on:
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS "${{ secrets.SUPABASE_URL }}/rest/v1/negocios?select=id&limit=1" -H "apikey: ${{ secrets.SUPABASE_KEY }}"

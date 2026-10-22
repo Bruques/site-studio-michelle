@@ -1,0 +1,168 @@
+---
+import c from "../config/cliente.json";
+import "../styles/global.css";
+
+const wa = (msg: string) => `https://wa.me/${c.whatsapp}?text=${encodeURIComponent(msg)}`;
+const cores = c.cores;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const foto = (caminho: string) => `${base}/${caminho}`;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{c.nome} {c.subtitulo} | {c.cidade}</title>
+    <meta name="description" content={c.descricao} />
+    <script is:inline>document.documentElement.classList.add("js")</script>
+    <meta name="theme-color" content={cores.principal} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body style={`--principal:${cores.principal};--escura:${cores.escura};--clara:${cores.clara};--destaque:${cores.destaque}`}>
+    <header class="topo">
+      <a href="#inicio" class="marca">{c.nome}</a>
+      <nav>
+        <a href="#servicos">Serviços</a>
+        <a href="#galeria">Trabalhos</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#agendar" class="btn btn-pequeno">Agendar</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+      <section id="inicio" class="hero">
+        <p class="sobretitulo">{c.subtitulo} · {c.cidade}</p>
+        <h1>{c.slogan}</h1>
+        <p class="lead">{c.descricao}</p>
+        <div class="acoes">
+          <a href="#agendar" class="btn">Agendar horário</a>
+          <a href={wa("Olá! Gostaria de saber mais sobre os serviços.")} class="btn btn-contorno">Falar no WhatsApp</a>
+        </div>
+      </section>
+
+      <section class="secao sobre reveal-grupo" id="sobre">
+        <img class="foto" src={foto(c.sobre.foto)} alt={`${c.profissional}, ${c.subtitulo}`} loading="lazy" />
+        <div>
+          <p class="sobretitulo">{c.sobre.sobretitulo}</p>
+          <h2 class="reveal">{c.sobre.titulo}</h2>
+          {c.sobre.texto.map((t) => <p>{t}</p>)}
+          <ul class="lista-destaques">
+            {c.sobre.destaques.map((d) => <li>{d}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section class="secao fundo" id="servicos">
+        <h2 class="reveal">Serviços</h2>
+        <div class="cards reveal-grupo" id="lista-servicos">
+          {c.servicos.map((s) => (
+            <article class="card">
+              <h3>{s.nome}</h3>
+              <p>{s.descricao}</p>
+              <div class="meta"><strong>{s.preco}</strong><span>{s.duracao}</span></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="secao" id="galeria">
+        <h2 class="reveal">Nossos trabalhos</h2>
+        <div class="galeria reveal-grupo">
+          {c.galeria.map((g) => <img src={foto(g.src)} alt={g.legenda} loading="lazy" />)}
+        </div>
+        <p class="centro"><a class="link" href={`https://instagram.com/${c.instagram}`} target="_blank" rel="noopener">Ver mais no Instagram @{c.instagram}</a></p>
+      </section>
+
+      <section class="secao fundo" id="depoimentos">
+        <h2 class="reveal">O que dizem as clientes</h2>
+        <div class="cards reveal-grupo">
+          {c.depoimentos.map((d) => (
+            <figure class="card depo">
+              <blockquote>“{d.texto}”</blockquote>
+              <figcaption>{d.nome}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section class="secao" id="duvidas">
+        <h2 class="reveal">Dúvidas frequentes</h2>
+        <div class="faq reveal-grupo">
+          {c.faq.map((f) => (
+            <details>
+              <summary>{f.pergunta}</summary>
+              <p>{f.resposta}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section class="secao agendar" id="agendar">
+        <h2 class="reveal">Agende seu horário</h2>
+        <p class="centro">Escolha o serviço, a data e um horário livre. A {c.profissional} confirma o seu pedido pelo WhatsApp.</p>
+        <form id="form-agenda" class="form reveal">
+          <label>Seu nome <input name="nome" required autocomplete="name" /></label>
+          <label>Seu WhatsApp <input name="telefone" type="tel" required autocomplete="tel" placeholder="(35) 99999-9999" /></label>
+          <fieldset class="servicos-escolha">
+            <legend>Serviços <small>(pode escolher mais de um)</small></legend>
+            <div id="opcoes-servico">
+              {c.servicos.map((s) => (
+                <label class="opcao">
+                  <input type="checkbox" name="servico" value={s.nome} />
+                  <span class="opcao-nome">{s.nome}</span>
+                  <span class="opcao-meta">{s.duracao}</span>
+                  <span class="opcao-preco">{s.preco}</span>
+                </label>
+              ))}
+            </div>
+            <p id="resumo-servicos" class="resumo" hidden></p>
+          </fieldset>
+          <div class="linha">
+            <label>Data <input type="date" name="data" required /></label>
+            <label>Horário <select name="hora" required disabled></select></label>
+          </div>
+          <p id="agenda-aviso" class="aviso" hidden></p>
+          <button class="btn" type="submit" disabled>Solicitar horário</button>
+        </form>
+        <div id="agenda-sucesso" class="form sucesso" hidden>
+          <h3>Pedido enviado!</h3>
+          <p>A {c.profissional} vai confirmar o seu horário em breve. Para agilizar, avise por aqui:</p>
+          <a class="btn" href="#" target="_blank" rel="noopener">Avisar no WhatsApp</a>
+        </div>
+      </section>
+
+      <section class="secao fundo" id="contato">
+        <h2 class="reveal">Onde estamos</h2>
+        <div class="contato reveal-grupo">
+          <div>
+            <p><strong>{c.cidade}</strong><br />{c.endereco}</p>
+            <h3>Horário de atendimento</h3>
+            <ul class="horarios">
+              {c.horarios.map((h) => <li><span>{h.dia}</span><span>{h.horas}</span></li>)}
+            </ul>
+          </div>
+          <div class="mapa-bloco">
+            <iframe class="mapa" title="Mapa do estúdio" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src={`https://www.google.com/maps?q=${encodeURIComponent(c.mapaQuery)}&output=embed`}></iframe>
+            <a class="link" target="_blank" rel="noopener" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.mapaQuery)}`}>Como chegar</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="rodape">
+      <p>{c.nome} · {c.subtitulo}</p>
+      <p><a href={`https://instagram.com/${c.instagram}`} target="_blank" rel="noopener">Instagram</a> · <a href={wa("Olá!")}>WhatsApp</a></p>
+    </footer>
+
+    <a class="wa-fixo" href={wa("Olá! Gostaria de agendar um horário.")} aria-label="Falar no WhatsApp">WhatsApp</a>
+
+    <script>
+      import "../scripts/agenda";
+      import "../scripts/animacoes";
+    </script>
+  </body>
+</html>

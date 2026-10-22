@@ -1,0 +1,124 @@
+{
+  "slug": "studio-michelle",
+  "nome": "Studio Michelle",
+  "subtitulo": "Cílios Terapia",
+  "profissional": "Michelle",
+  "slogan": "Olhar marcante, cuidado de verdade.",
+  "descricao": "Extensão de cílios com fios naturais, volumosos e tecnológicos, feita com técnica e cuidado com a saúde dos seus olhos.",
+  "whatsapp": "5535999603567",
+  "instagram": "_cilios_terapia_michelle",
+  "cidade": "Bom Repouso, MG",
+  "endereco": "Rua Quinzinho Brandão, 71 · Bom Repouso, MG · CEP 37610-000",
+  "mapaUrl": "",
+  "cores": {
+    "principal": "#7a5240",
+    "escura": "#3b2a22",
+    "clara": "#faf5f0",
+    "destaque": "#c9a58a"
+  },
+  "sobre": {
+    "titulo": "Michelle Silva",
+    "texto": [
+      "Meu nome é Michelle e atuo como Lash Designer há mais de 4 anos. Sou completamente apaixonada por essa profissão, que mudou o rumo da minha vida e me faz ser uma pessoa realizada.",
+      "Lidar com a autoestima das pessoas me encanta, e ver o resultado satisfatório me dá a certeza de que fiz a escolha certa."
+    ],
+    "destaques": [
+      "+ de 4 anos de experiência",
+      "Procedimento indolor",
+      "Não danifica os cílios naturais"
+    ],
+    "foto": "fotos/foto-2.jpg",
+    "sobretitulo": "Sobre mim"
+  },
+  "servicos": [
+    {
+      "nome": "Extensão fio a fio",
+      "descricao": "Efeito natural e delicado.",
+      "preco": "R$ 150",
+      "duracao": "2h"
+    },
+    {
+      "nome": "Volume russo",
+      "descricao": "Mais densidade e volume.",
+      "preco": "R$ 190",
+      "duracao": "2h30"
+    },
+    {
+      "nome": "Fios tecnológicos",
+      "descricao": "Leveza e acabamento sofisticado.",
+      "preco": "R$ 210",
+      "duracao": "2h30"
+    },
+    {
+      "nome": "Manutenção",
+      "descricao": "Reposição dos fios em até 20 dias.",
+      "preco": "R$ 90",
+      "duracao": "1h30"
+    }
+  ],
+  "galeria": [
+    {
+      "src": "fotos/foto-4.jpg",
+      "legenda": "Fios volumosos"
+    },
+    {
+      "src": "fotos/foto-5.jpg",
+      "legenda": "Cílios e sobrancelhas"
+    },
+    {
+      "src": "fotos/foto-6.jpg",
+      "legenda": "Acabamento delicado"
+    },
+    {
+      "src": "fotos/foto-3.jpg",
+      "legenda": "Olhar marcante"
+    }
+  ],
+  "depoimentos": [
+    {
+      "nome": "Cliente 1",
+      "texto": "Depoimento de exemplo. Amei o resultado, super delicada e atenciosa!"
+    },
+    {
+      "nome": "Cliente 2",
+      "texto": "Depoimento de exemplo. Cílios lindos e duraram muito mais do que eu esperava."
+    },
+    {
+      "nome": "Cliente 3",
+      "texto": "Depoimento de exemplo. Ambiente muito agradável, recomendo!"
+    }
+  ],
+  "horarios": [
+    {
+      "dia": "Segunda a sexta",
+      "horas": "09h às 18h"
+    },
+    {
+      "dia": "Sábado",
+      "horas": "09h às 13h"
+    },
+    {
+      "dia": "Domingo",
+      "horas": "Fechado"
+    }
+  ],
+  "mapaQuery": "Rua Quinzinho Brandão 71, Bom Repouso, MG, 37610000",
+  "faq": [
+    {
+      "pergunta": "Quando devo fazer a manutenção?",
+      "resposta": "A manutenção deve ser feita em até 20 dias, para manter o olhar sempre bonito e uniforme."
+    },
+    {
+      "pergunta": "A extensão danifica os cílios naturais?",
+      "resposta": "Não. Aplicada com a técnica correta, a extensão não danifica os seus cílios naturais."
+    },
+    {
+      "pergunta": "A extensão pesa no olho?",
+      "resposta": "Não. Os fios são leves e a extensão não pesa no olho."
+    },
+    {
+      "pergunta": "O procedimento dói?",
+      "resposta": "Não, o procedimento é indolor."
+    }
+  ]
+}

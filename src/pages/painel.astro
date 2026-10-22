@@ -1,0 +1,103 @@
+---
+import c from "../config/cliente.json";
+import "../styles/global.css";
+const cores = c.cores;
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Painel · {c.nome}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="painel-body" style={`--principal:${cores.principal};--escura:${cores.escura};--clara:${cores.clara};--destaque:${cores.destaque}`}>
+    <main class="painel">
+      <header class="painel-cab">
+        <div>
+          <p class="sobretitulo">Painel de agendamentos</p>
+          <h1>{c.nome}</h1>
+        </div>
+        <button id="sair" class="btn btn-contorno btn-pequeno" hidden>Sair</button>
+      </header>
+
+      <form id="login" class="cartao login" hidden>
+        <h2>Entrar</h2>
+        <label class="campo">E-mail <input name="email" type="email" required autocomplete="username" /></label>
+        <label class="campo">Senha <input name="senha" type="password" required autocomplete="current-password" /></label>
+        <p id="login-erro" class="aviso" hidden></p>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+
+      <div id="app" hidden>
+        <nav class="abas" aria-label="Seções do painel">
+          <button data-aba="pedidos" class="aba ativa">Pedidos</button>
+          <button data-aba="horarios" class="aba">Horários</button>
+          <button data-aba="servicos" class="aba">Serviços</button>
+          <button data-aba="folgas" class="aba">Folgas</button>
+        </nav>
+        <p id="painel-aviso" class="aviso" hidden></p>
+
+        <section id="aba-pedidos">
+          <div class="filtros">
+            <button data-filtro="pendente" class="filtro ativa">Pendentes</button>
+            <button data-filtro="confirmado" class="filtro">Confirmados</button>
+            <button data-filtro="cancelado" class="filtro">Cancelados</button>
+          </div>
+          <div id="lista-pedidos"></div>
+        </section>
+
+        <section id="aba-horarios" hidden>
+          <p class="ajuda">Marque os dias em que você atende e o horário de início e fim. A duração de cada atendimento vem do serviço escolhido.</p>
+          <div class="cartao">
+            <label class="campo passo">Intervalo entre horários oferecidos
+              <select id="passo">
+                <option value="15">A cada 15 min</option>
+                <option value="30">A cada 30 min</option>
+                <option value="60">A cada 1 hora</option>
+              </select>
+            </label>
+            <div id="lista-horarios"></div>
+          </div>
+          <button id="salvar-horarios" class="btn">Salvar horários</button>
+        </section>
+
+        <section id="aba-servicos" hidden>
+          <p class="ajuda">Edite nome, preço e duração de cada serviço. O site e a agenda usam esses dados automaticamente.</p>
+          <div id="lista-servicos-painel"></div>
+          <form id="form-servico" class="cartao novo-servico">
+            <h3>Novo serviço</h3>
+            <div class="grade-servico">
+              <label class="campo nome">Nome <input name="nome" required /></label>
+              <label class="campo">Preço (R$) <input name="preco" type="number" min="0" step="0.01" /></label>
+              <label class="campo">Duração <select name="duracao" id="duracao-novo"></select></label>
+              <label class="campo larga">Descrição <input name="descricao" /></label>
+            </div>
+            <button class="btn" type="submit">Adicionar serviço</button>
+          </form>
+        </section>
+
+        <section id="aba-folgas" hidden>
+          <p class="ajuda">Feche um dia inteiro (deixe as horas em branco) ou só um período, como o almoço ou um compromisso.</p>
+          <form id="form-folga" class="cartao">
+            <div class="grade-folga">
+              <label class="campo">Data <input type="date" name="data" required /></label>
+              <label class="campo">Das <input type="time" name="inicio" /></label>
+              <label class="campo">Até <input type="time" name="fim" /></label>
+              <label class="campo motivo">Motivo (opcional) <input name="motivo" /></label>
+            </div>
+            <button class="btn" type="submit">Fechar</button>
+          </form>
+          <h3>Próximas folgas</h3>
+          <div id="lista-folgas"></div>
+        </section>
+      </div>
+    </main>
+    <script>
+      import "../scripts/painel";
+    </script>
+  </body>
+</html>
