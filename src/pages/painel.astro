@@ -2,6 +2,7 @@
 import c from "../config/cliente.json";
 import "../styles/global.css";
 const cores = c.cores;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 <!doctype html>
 <html lang="pt-BR">
@@ -21,7 +22,10 @@ const cores = c.cores;
           <p class="sobretitulo">Painel de agendamentos</p>
           <h1>{c.nome}</h1>
         </div>
-        <button id="sair" class="btn btn-contorno btn-pequeno" hidden>Sair</button>
+        <div class="acoes">
+          <a class="btn btn-contorno btn-pequeno" href={`${base}/`}>Ver site</a>
+          <button id="sair" class="btn btn-contorno btn-pequeno" hidden>Sair</button>
+        </div>
       </header>
 
       <form id="login" class="cartao login" hidden>

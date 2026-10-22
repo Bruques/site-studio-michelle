@@ -211,3 +211,6 @@ iframe.mapa{width:100%;aspect-ratio:4/3;border:0;border-radius:16px}
 .opcao-meta{grid-area:meta;font-size:.8rem;font-weight:400;opacity:.7}
 .resumo{margin:10px 0 0;font-weight:600;color:var(--principal)}
 .opcao-preco{grid-area:preco;font-size:1.15rem;font-weight:700;color:var(--principal);white-space:nowrap;padding-left:12px}
+
+.acesso-painel{font-size:.8rem;opacity:.6;text-decoration:none}
+.acesso-painel:hover{opacity:1;text-decoration:underline}
